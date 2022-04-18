@@ -30,7 +30,7 @@ class PublicationFactory
 
         // Register a document for the film index
         $document = new Document(
-            '', // no path, i.e. root
+            '/', // no path, i.e. root
             function() use ($films, $twig) {
                 $html = $twig->render('index.html.twig', ['films' => $films]);
                 return $html;
@@ -41,7 +41,7 @@ class PublicationFactory
         // Register a document for each film
         foreach ($films as $node) {
             $document = new Document(
-                'episode-' . $node['episodeID'],
+                '/episode-' . $node['episodeID'],
                 function() use ($node, $twig) {
                     $html = $twig->render('film.html.twig', ['film' => $node]);
                     return $html;
@@ -60,7 +60,7 @@ class PublicationFactory
 
         foreach ($characters as $node) {
             $document = new Document(
-                'character-' . $node['id'],
+                '/character-' . $node['id'],
                 function() use ($node, $twig) {
                     $html = $twig->render('character.html.twig', ['character' => $node]);
                     return $html;
